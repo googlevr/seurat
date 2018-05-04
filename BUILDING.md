@@ -27,9 +27,9 @@
 
 ### Supported Toolchain
 
-#### Bazel 0.9.0
+#### Bazel 0.13.0
 
-The build is verified to work with Bazel release 0.9.0. Other versions,
+The build is verified to work with Bazel release 0.13.0. Other versions,
 including newer ones, might not work.
 
 #### Clang 3.9
