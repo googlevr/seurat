@@ -10,7 +10,7 @@ high fidelity graphics on mobile VR devices. (One way to think of it is as a
 serving the same role as stereo panoramas on 3DoF VR devices, on 6DoF devices.)
 
 The processing pipeline for static environments generates data for a single
-headbox (e.g. 1m3 of space). Input data can be generated with any rendering
+headbox (e.g. 1 m&#179; of space). Input data can be generated with any rendering
 system, e.g. a real-time game engine or an offline ray tracer. We have plugins
 for Unity, Unreal and Maya. Seurat outputs a mesh with an RGBA texture atlas,
 which can be rendered in any real-time engine. Dynamic content can be composited
