@@ -1,0 +1,53 @@
+/*
+Copyright 2017 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS-IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto2";
+
+
+
+import "seurat/api/camera.proto";
+import "seurat/api/image.proto";
+import "seurat/api/math.proto";
+
+package seurat.api.proto;
+
+// A capture represents all data required by Seurat to process a scene.
+message Capture {
+  // The view groups in this capture.
+  repeated ViewGroup view_groups = 1;
+  // World-space position of the headbox center. If not set, the center will be
+  // placed at the origin.
+  optional Point3f headbox_center = 2;
+}
+
+// A group of views with disjoint visibility volumes, where a visibility volume
+// is the world-space region that is visible from a view's camera.  Example of
+// valid view groups are single images and cube maps.
+message ViewGroup {
+  // Views with disjoint visibility volumes.
+  repeated View views = 1;
+}
+
+// A view combines an LDI loader and a camera. The LDI loader specifies how the
+// LDI data is loaded from a file system and converted to a canonical
+// four-channel float LDI if necessary. The camera defines how LDI samples are
+// converted to world-space rays.
+message View {
+  // The camera for the view.
+  optional Camera camera = 1;
+  // Description of how LDI data is loaded and converted.
+  optional Ldi ldi = 2;
+}

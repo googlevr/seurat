@@ -1,0 +1,133 @@
+/*
+Copyright 2017 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS-IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+// A proto for all Seurat pipeline flags.
+
+syntax = "proto2";
+
+
+
+package seurat.pipeline.proto;
+
+message Flags {
+  // Path to the input manifest file.
+  optional string input_path = 1 [default = ""];
+
+  // Base path to all output artifacts.
+  optional string output_path = 2 [default = ""];
+
+  // Directory for all cache artifacts.
+  optional string cache_path = 3 [default = ""];
+
+  // If not empty, process only the specified face. Must be one of 'front',
+  // 'back', 'left', 'right', 'bottom', 'top'.
+  optional string single_face = 6 [default = ""];
+
+  // The maximum number of triangles to output.
+  optional int32 triangle_count = 8 [default = 72000];
+
+  // The target amount of overdraw.
+  optional double overdraw_factor = 9 [default = 3.0];
+
+  // The peak overdraw when viewed from any pose.
+  optional double peak_overdraw_factor = 29 [default = 999.0];
+
+  // Gamma-correction exponent.
+  optional double gamma = 10 [default = 1.0];
+
+  // The type of component to generate.
+  optional string baker_type = 11 [default = "diffuse"];
+
+  // The size of the filter used to 'bake' specular highlights. Smaller values
+  // bake sharper reflections.  Larger values blur these out, yielding a more
+  // diffuse-looking representation.
+  optional double specular_filter_size = 12 [default = 0.05];
+
+  // Determines whether output textures use premultiplied alpha.
+  optional bool premultiply_alpha = 13 [default = true];
+
+  // The 'footprint' of a sample, along its depth.  Larger values help fill
+  // seams in the final geometry.
+  optional double ray_footprint = 14 [default = 0.01];
+
+  // Resolution of the target display in pixels per degree. This parameter is
+  // used to determine texture size.
+  optional double pixels_per_degree = 15 [default = 13.0];
+
+  // The width of output textures.
+  optional int32 texture_width = 30 [default = 4096];
+
+  // The height of output textures.
+  optional int32 texture_height = 31 [default = 4096];
+
+  // Alignment constraint on individual texture tiles in the atlas.
+  optional int32 texture_alignment = 17 [default = 4];
+
+  // Determines whether to allocate texture resolution using texture content
+  // when limiting max_texture_size.
+  optional bool content_adaptive_resolution = 18 [default = false];
+
+  // Evalutes the quality of the output (slowly!).
+  optional bool evaluate = 21 [default = false];
+
+  // Half the side-length of the origin-centered skybox to clamp geometry.
+  //
+  // 0 indicates no skybox clamping should be performed.
+  optional double skybox_radius = 22 [default = 200.0];
+
+  // If different from the null string, LDI samples representing a pattern will
+  // be procedurally generated instead of loading input data from files.
+  // Must be one of: {'checkerboard', 'stripes'}. This flag is intended
+  // only for testing and debugging.
+  optional string pattern_name = 23 [default = ""];
+
+  // Resolution of the pattern LDI.
+  optional int32 pattern_image_size = 24 [default = 16];
+
+  // Size of a feature of the pattern (i.e. square or stripe), in pixels.
+  optional int32 pattern_feature_size = 25 [default = 2];
+
+  // Angle of the pattern relative to LDI's raster lines, in degrees.
+  optional double pattern_angle = 26 [default = 0.0];
+
+  // Z depth of pattern.
+  optional double pattern_depth = 27 [default = 0.2];
+
+  // Produces a fast, low-quality preview.
+  optional bool fast_preview = 7 [default = false];
+
+  // Whether the output will be rendered with z-test.
+  optional bool z_buffer = 33 [default = false];
+
+  // Enables projective texture mapping. Otherwise, object space texture mapping
+  // is used.
+  optional bool projective_texture_mapping = 34 [default = false];
+
+  // Determines whether separate meshes and texture atlases will be output for
+  // opaque and translucent parts of the scene.
+  optional bool separate_opaque = 35 [default = false];
+
+  // Defines the threshold for deciding whether a texture is opaque or
+  // translucent. A value between 0.0 and 1.0 is expected.
+  optional double alpha_threshold = 36 [default = 0.95];
+
+  // Pixel filter for texture generation. Must be one of 'box', 'bspline',
+  // 'gaussian'.
+  optional string pixel_filter = 37 [default = 'gaussian'];
+
+  // The radius of the desired viewing volume.
+  optional double headbox_radius = 38 [default = 0.5];
+};

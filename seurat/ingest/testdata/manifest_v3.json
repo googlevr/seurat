@@ -1,0 +1,41 @@
+{
+  "headbox_center" : [1.0, 2.0, 3.0],
+  "view_groups" : [
+    {
+      "views" : [
+        {
+          "projective_camera" : {
+            "image_width" : 450,
+            "image_height" : 450,
+            "clip_from_eye_matrix" : [
+              1.0, 0.0, 0.0, 0.0,
+              0.0, 1.0, 0.0, 0.0,
+              0.0, 0.0, 1.0, 0.0,
+              0.0, 0.0, 0.0, 1.0
+            ],
+            "world_from_eye_matrix" : [
+              2.0, 0.0, 0.0, 0.0,
+              0.0, 2.0, 0.0, 0.0,
+              0.0, 0.0, 2.0, 0.0,
+              0.0, 0.0, 0.0, 2.0
+            ],
+            "depth_type" : "EYE_Z"
+          },
+          "depth_image_file" : {
+            "color" : {
+              "path" : "color.exr",
+              "channel_0" : "R",
+              "channel_1" : "G",
+              "channel_2" : "B",
+              "channel_alpha" : "CONSTANT_ONE"
+            },
+            "depth" : {
+              "path" : "depth.exr",
+              "channel_0" : "A"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

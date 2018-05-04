@@ -1,0 +1,18 @@
+# The "correct" way to do this would be to use a custom CROSSTOOL, but this is
+# much simpler.
+
+# macro redefinition
+build --copt /wd4005
+# no definition for inline function 'function'
+build --copt /wd4506
+build --host_copt /wd4506
+# 'function' : format string 'string' requires an argument of type 'type', but
+# variadic argument number has type 'type'
+build --copt /wd4477
+# not all control paths return a value
+build --copt /wd4715
+# 'operation': unsafe mix of type 'type1' and type 'type2' in operation
+build --copt /wd4805
+# This object file does not define any previously undefined public symbols, so
+# it will not be used by any link operation that consumes this library
+build --linkopt /ignore:4221

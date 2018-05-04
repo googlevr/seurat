@@ -1,0 +1,17 @@
+# The "correct" way to do this would be to use a custom CROSSTOOL, but this is
+# much simpler.
+build --copt -Wno-conversion
+build --copt -Wno-sign-compare
+build --copt -Wno-return-type
+build --copt -Wno-comment
+build --copt -Wno-unused-private-field
+build --copt -fno-strict-aliasing
+build --copt -Wno-deprecated-register
+build --copt -Wno-macro-redefined
+build --copt -Wno-unused-function
+build --copt -Wno-unused-const-variable
+build --host_copt -Wno-unused-const-variable
+
+# Build with clang.  This is necessary to avoid difficult-to-debug linking
+# problems when linking with Ion (which only builds with clang on linux)
+build --client_env=CC=clang
