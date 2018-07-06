@@ -214,6 +214,7 @@ int main(int argc, char** argv) {
 
   glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
   window = glfwCreateWindow(kWindowWidth, kWindowHeight, "Butterfly", nullptr,
                             nullptr);
